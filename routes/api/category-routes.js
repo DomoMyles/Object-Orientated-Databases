@@ -23,9 +23,8 @@ router.get('/', (req, res) => {
   })
 });
 
-//get One by
+//get One by id
 router.get('/:id', async (req, res) => {
-
   const category = await Category.findOne({
     attributes: ['id', 'category_name'],
     include: [{
@@ -37,7 +36,7 @@ router.get('/:id', async (req, res) => {
     },
   })
   res.status(200).json(category);
-console.log(category.dataValues)
+  console.log(category.dataValues)
 })
 
 
@@ -48,26 +47,27 @@ router.post('/', (req, res) => {
   Category.create(req.body)
     .then((Category) => {
       // if there's Category tags, we need to create pairings to bulk create in the CategoryTag model
-      if (req.body.tagIds.length) {
-        const CategoryTagIdArr = req.body.tagIds.map((tag_id) => {
+      if (req.body.categoryIds) {
+        const CategoryCategoryIdArr = req.body.categoryIds.map((category_id) => {
           return {
             Category_id: Category.id,
-            tag_id,
           };
         });
         console.log(req.body)
-        return CategoryTag.bulkCreate(CategoryTagIdArr);
+        return CategoryCategory.bulkCreate(CategoryCategoryIdArr);
       }
-      // if no Category tags, just respond
+      // if no Category Categorys, just respond
       res.status(200).json(Category);
     })
-    .then((CategoryTagIds) => res.status(200).json(CategoryTagIds))
+    .then((CategoryCategoryIds) => res.status(200).json(CategoryCategoryIds))
     .catch((err) => {
       console.log(err);
       res.status(400).json(err);
     });
 });
 
+
+//Replace data based on choosen ID
 router.put('/:id', async (req, res) => {
   await res.json(`${req.method} request made`)
   try {
@@ -79,20 +79,14 @@ router.put('/:id', async (req, res) => {
     if (!categoryData) {
       res.status(404).json({
         message: 'No category found with that id'
-      });
-      return;
+      })
+      res.status(200).json(categoryData);
     }
-    res.status(200).json(categoryData);
   } catch (err) {
     res.status(500).json(err);
   }
 });
-// const { id, category_name } = req.body
-// const newCategory = await Category.findOrCreate()
-// const data = await JSON.parse(JSON.stringify(res))
-router.put('/:id', (req, res) => {
-  // update a category by its `id` value
-});
+
 
 
 //delete id's thing
