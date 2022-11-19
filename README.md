@@ -1,7 +1,7 @@
-# Group 4: Full-Stack Project | The Advertising Campaign [TAC]
+# Object Oriented Databases
  
 ##Description
-This application will allow you to create a database of cataloging products that have certain attributes to catagorize them. This would be a great platform to set a store's stock into.
+This application will allow you to create a database of cataloging products that have certain attributes to categorize them. This would be a great platform to set a store's stock into.
 
 ## License | Badges:
 
@@ -21,8 +21,8 @@ This application will allow you to create a database of cataloging products that
 - [License](#license)
 - [Usage](#usage)
 - [Technologies](#technologies)
-- [Screenshot](#video)
-- [Questions](#Contributers)
+- [Video](#video)
+- [Contributors](#Contributors)
 
 ---
 
@@ -34,6 +34,12 @@ WHEN launches the program in insomnia
 THEN The user will see many get, fetch, post, and delete requests on the side
 WHEN The user launches a get request
 THEN the user will be given the products associated with their get request
+WHEN the user launches a post command in insomnia
+THEN the post they created will be added to the database
+WHEN the user performs a delete request
+THEN the object of the ID they requested will be deleted
+WHEN the user performs a put request
+THEN the area they wanted to change will be replaced with what they have inputted
 ```
 ---
 
@@ -55,7 +61,7 @@ https://www.youtube.com/watch?v=hDg8FobtvIA
 
 
 
-## Contributers:
+## Contributors:
 - Dayne Lalmond: [dlalmondo@gmail.com](mailto:dlalmondo@gmail.com)
 
 ---
